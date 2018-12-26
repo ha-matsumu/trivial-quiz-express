@@ -1,10 +1,13 @@
 const express = require("express");
 const app = express();
 
+app.use(express.static("public"));
+app.set("view engine", "ejs");
+
 app.get("/", (req, res) => {
-  res.send("Welcome to main.js!");
+  res.render("quiz");
 });
 
 app.listen("3000", () => {
-  console.log("Server has started!");
+  console.log("Trivial quiz app listening on port 3000!");
 });
