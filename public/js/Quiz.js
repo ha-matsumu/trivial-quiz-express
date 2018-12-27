@@ -7,7 +7,7 @@ class Quiz {
     this.question = _quizData.question;
     this.type = _quizData.type;
   }
-
+  
   getShuffledAnswers() {
     const answers = this.incorrectAnswers.slice();
     answers.push(this.correctAnswer);
