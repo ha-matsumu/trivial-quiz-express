@@ -2,7 +2,7 @@
   "name": "03trivial-quiz-express",
   "version": "1.0.0",
   "description": "",
-  "main": "main.js",
+  "main": "index.js",
   "scripts": {
     "test": "mocha ./test/src/models"
   },
