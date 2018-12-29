@@ -7,7 +7,7 @@ const quizTestData = {
   difficulty: "medium",
   incorrect_answers: ["False"],
   question: "Amazon acquired Twitch in August 2014 for $970 million dollars.",
-  type: "boolean",
+  type: "boolean"
 };
 
 const quiz = new Quiz(quizTestData);
@@ -17,7 +17,11 @@ describe("Quizクラスのテスト", () => {
   });
 
   it("correctAnswerの型チェック", () => {
-    assert.equal(typeof quiz.correctAnswer, "string", "string型ではありません。");
+    assert.equal(
+      typeof quiz.correctAnswer,
+      "string",
+      "string型ではありません。"
+    );
   });
 
   it("difficultyの型チェック", () => {
@@ -25,11 +29,21 @@ describe("Quizクラスのテスト", () => {
   });
 
   it("incorrectAnswersの型チェック", () => {
-    assert.equal(Array.isArray(quiz.incorrectAnswers), true, "配列ではありません。");
+    assert.equal(
+      Array.isArray(quiz.incorrectAnswers),
+      true,
+      "配列ではありません。"
+    );
   });
 
+  // it("incorrectAnswersに格納されている値の型チェック", () => {
+  //   assert.equal(typeof quiz.incorrectAnswers[0], "string", "string型ではありません。");
+  // });
+
   it("incorrectAnswersに格納されている値の型チェック", () => {
-    assert.equal(typeof quiz.incorrectAnswers[0], "string", "string型ではありません。");
+      quiz.incorrectAnswers.forEach(incorrectAnswer => {
+        assert.equal(typeof incorrectAnswer, "string", "文字列ではありません。");
+      });
   });
 
   it("questionの型チェック", () => {
