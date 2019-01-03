@@ -5,8 +5,8 @@ fetch("https://opentdb.com/api.php?amount=10") // TODO: 最終的にfetch('local
   .then(response => {
     return response.json();
   })
-  .then(response => {
-    return response.results;
+  .then(json => {
+    return json.results;
   })
   .then(quizDataList => {
     quizDataList.forEach(quizData => {
