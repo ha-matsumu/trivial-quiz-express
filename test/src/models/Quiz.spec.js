@@ -37,9 +37,9 @@ describe("Quizクラスのテスト", () => {
   });
 
   it("incorrectAnswersに格納されている値の型チェック", () => {
-      quiz.incorrectAnswers.forEach(incorrectAnswer => {
-        assert.equal(typeof incorrectAnswer, "string", "文字列ではありません。");
-      });
+    quiz.incorrectAnswers.forEach(incorrectAnswer => {
+      assert.equal(typeof incorrectAnswer, "string", "文字列ではありません。");
+    });
   });
 
   it("questionの型チェック", () => {
