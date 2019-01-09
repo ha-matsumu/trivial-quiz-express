@@ -17,7 +17,7 @@ fetch("http://localhost:3000/api/quiz")
     appendCurrentQuizToContainer();
   });
 
-// 取得したクイズデータをコンテナで表示する
+// 取得したクイズデータをコンテナに表示する
 function appendCurrentQuizToContainer() {
   // 問題文を表示する
   const currentQuiz = quizDataList[currentQuizIndex];
