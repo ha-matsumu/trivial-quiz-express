@@ -1,8 +1,12 @@
 const divCurrentQuizQuestion = document.getElementById("currentQuizQuestion");
 const ulCurrentQuizAnswers = document.getElementById("currentQuizAnswers");
+const divNumberOfCorrectAnswers = document.getElementById(
+  "numberOfCorrectAnswers"
+);
 
-const quizDataList = [];
-const currentQuizIndex = 0;
+let quizDataList = [];
+let currentQuizIndex = 0;
+let numberOfCorrectAnswers = 0;
 
 // 自作API経由でクイズデータを取得する
 fetch("http://localhost:3000/api/quiz")
@@ -10,10 +14,8 @@ fetch("http://localhost:3000/api/quiz")
     return response.json();
   })
   .then(quizObjects => {
-    quizObjects.forEach(quizObject => {
-      quizDataList.push(quizObject);
-    });
-    console.log("クイズデータ : ", quizDataList); // TODO:あとで消す
+    quizDataList = quizObjects;
+
     appendCurrentQuizToContainer();
   });
 
@@ -35,6 +37,17 @@ function appendCurrentQuizToContainer() {
   shuffleAnswers(currentQuiz).forEach(shuffleAnswer => {
     const liCurrentQuizAnswer = document.createElement("li");
     liCurrentQuizAnswer.textContent = shuffleAnswer;
+
+    liCurrentQuizAnswer.addEventListener("click", () => {
+      currentQuizIndex++;
+      if (currentQuizIndex === quizDataList.length) {
+        finishQuiz();
+      } else {
+        checkAnswer(liCurrentQuizAnswer.textContent, currentQuiz.correctAnswer);
+        appendCurrentQuizToContainer();
+      }
+    });
+
     ulCurrentQuizAnswers.appendChild(liCurrentQuizAnswer);
   });
 }
@@ -53,4 +66,30 @@ function shuffleAnswers(_currentQuiz) {
   }
 
   return answers;
+}
+
+// クイズの終了処理を行う
+function finishQuiz() {
+  const resultText = `Your Score<br>${numberOfCorrectAnswers} / ${
+    quizDataList.length
+  }`;
+
+  divCurrentQuizQuestion.textContent = "";
+  divNumberOfCorrectAnswers.innerHTML = resultText;
+
+  while (ulCurrentQuizAnswers.firstChild) {
+    ulCurrentQuizAnswers.removeChild(ulCurrentQuizAnswers.firstChild);
+  }
+}
+
+// クイズの正誤確認を行う
+function checkAnswer(_clickedAnswer, _correctAnswer) {
+  if (_clickedAnswer === _correctAnswer) {
+    numberOfCorrectAnswers++;
+    alert("You got it right!!");
+  } else {
+    alert(
+      `You got it wrong. The answer of this question is "${_correctAnswer}".`
+    );
+  }
 }
