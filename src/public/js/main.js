@@ -4,7 +4,7 @@ const divNumberOfCorrectAnswers = document.getElementById(
   "numberOfCorrectAnswers"
 );
 
-const quizDataList = [];
+let quizDataList = [];
 let currentQuizIndex = 0;
 let numberOfCorrectAnswers = 0;
 
@@ -14,11 +14,8 @@ fetch("http://localhost:3000/api/quiz")
     return response.json();
   })
   .then(quizObjects => {
-    quizObjects.forEach(quizObject => {
-      quizDataList.push(quizObject);
-    });
-    // quizDataList = quizObjects;
-    console.log("クイズデータ : ", quizDataList); // TODO:あとで消す
+    quizDataList = quizObjects;
+
     appendCurrentQuizToContainer();
   });
 
