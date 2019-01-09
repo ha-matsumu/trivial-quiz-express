@@ -1,7 +1,7 @@
 const divCurrentQuizQuestion = document.getElementById("currentQuizQuestion");
 const ulCurrentQuizAnswers = document.getElementById("currentQuizAnswers");
 
-const quizInstances = [];
+const quizDataList = [];
 const currentQuizIndex = 0;
 
 // 自作API経由でクイズデータを取得する
@@ -9,18 +9,18 @@ fetch("http://localhost:3000/api/quiz")
   .then(response => {
     return response.json();
   })
-  .then(quizDataList => {
-    quizDataList.forEach(quiz => {
-      quizInstances.push(quiz);
+  .then(quizObjects => {
+    quizObjects.forEach(quizObject => {
+      quizDataList.push(quizObject);
     });
-    console.log("クイズデータ : ", quizInstances); // TODO:あとで消す
+    console.log("クイズデータ : ", quizDataList); // TODO:あとで消す
     appendCurrentQuizToContainer();
   });
 
 // 取得したクイズデータをコンテナで表示する
 function appendCurrentQuizToContainer() {
   // 問題文を表示する
-  const currentQuiz = quizInstances[currentQuizIndex];
+  const currentQuiz = quizDataList[currentQuizIndex];
   const currentQuestionText = `Q${currentQuizIndex + 1}. ${
     currentQuiz.question
   }`;
