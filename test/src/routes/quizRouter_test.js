@@ -9,7 +9,11 @@ describe("GET /api", () => {
       .set("Accept", "application/json")
       .expect(200)
       .then(res => {
-        assert.equal(res.body.length, 10, "取得したクイズ数が10個ではありません。");
+        assert.equal(
+          res.body.length,
+          10,
+          "取得したクイズ数が10個ではありません。"
+        );
       });
   });
 });

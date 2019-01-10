@@ -8,13 +8,13 @@ function runRouteTest(_url, _callback) {
 }
 
 describe("GET /", () => {
-  it("top.ejsの表示", (done) => {
-   runRouteTest("/", done);
+  it("top.ejsの表示", done => {
+    runRouteTest("/", done);
   });
 });
 
 describe("GET /quiz", () => {
-  it("quiz.ejsの表示", (done) => {
+  it("quiz.ejsの表示", done => {
     runRouteTest("/quiz", done);
   });
 });
