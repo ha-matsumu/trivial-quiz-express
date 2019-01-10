@@ -1,20 +1,20 @@
 const request = require("supertest");
 const app = require("../../../src/index");
 
-function runRouteTest(_url, _callback) {
-  request(app)
+function runRouteTest(_url) {
+  return request(app)
     .get(_url)
-    .expect(200, _callback);
+    .expect(200);
 }
 
 describe("GET /", () => {
-  it("top.ejsの表示", done => {
-    runRouteTest("/", done);
+  it("top.ejsの表示", () => {
+    runRouteTest("/");
   });
 });
 
 describe("GET /quiz", () => {
-  it("quiz.ejsの表示", done => {
-    runRouteTest("/quiz", done);
+  it("quiz.ejsの表示", () => {
+    runRouteTest("/quiz");
   });
 });
