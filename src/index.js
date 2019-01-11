@@ -14,3 +14,5 @@ app.use("/api", quizRouter);
 app.listen("3000", () => {
   console.log("Trivial quiz app listening on port 3000!");
 });
+
+module.exports = app;
